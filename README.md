@@ -87,7 +87,7 @@ By explicitly constraining physical assumptions and modeling regime, this study 
 magsail-wr-stability/
 │
 ├── src/
-|   ├── integrator.py          # Integrator class
+|   ├── integrator.py          # Integrator and main file
 │   │
 │   ├── config.py          # Sail geometries/inertia tensors
 │   │
