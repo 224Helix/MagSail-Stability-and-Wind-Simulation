@@ -26,7 +26,7 @@ The stellar wind incorporates:
 
 - Hydrodynamic base flow matching WR wind characteristics
 - Embedded turbulent eddies and shock structures
-- Three fundamental MHD wave modes (Alfvén, fast and slow magnetosonic)
+- Three fundamental MHD wave modes (Alfvén, fast, and slow magnetosonic)
 - Observationally constrained WR wind parameters with controlled spatiotemporal variability
 
 Wind evolution uses a modified Taylor frozen-flow approximation with temporal modulation functions, allowing turbulent structures to advect while remaining dynamically active.
@@ -37,7 +37,7 @@ The spacecraft experiences forces and torques from the stellar wind's magnetic f
 
 - Stellar wind magnetic structure remains unaffected by spacecraft fields
 - Small sail cross-sections justify neglecting wind perturbations
-- Eliminates need for full MHD simulations, enabling efficient parametric exploration
+- Eliminates the need for full MHD simulations, enabling efficient parametric exploration
 
 ---
 
@@ -46,7 +46,7 @@ The spacecraft experiences forces and torques from the stellar wind's magnetic f
 The spacecraft configuration includes:
 
 - One primary MagSail for propulsion and momentum exchange
-- Three to four secondary magnetic sails for torque and steering authority
+- Three secondary magnetic sails for torque and steering authority
 
 Analysis focuses on dynamical stability and control feasibility rather than material properties or structural details.
 
@@ -78,7 +78,7 @@ This work emphasizes MagSail dynamics in extreme stellar environments without at
 
 ## Significance
 
-By explicitly constraining physical assumptions and modeling regime, this study provides a systematic framework for evaluating MagSail feasibility under realistic stellar wind variability. Results are relevant to theoretical studies, computational modeling, and understanding magnetically mediated spacecraft dynamics in astrophysical plasmas.
+By explicitly constraining physical assumptions and the modeling regime, this study provides a systematic framework for evaluating MagSail feasibility under realistic stellar wind variability. Results are relevant to theoretical studies, computational modeling, and understanding magnetically mediated spacecraft dynamics in astrophysical plasmas.
 
 ### Documentation 
 
