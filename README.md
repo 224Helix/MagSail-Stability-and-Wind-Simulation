@@ -24,8 +24,8 @@ Wolf-Rayet winds present an extreme but valuable test case for MagSail stability
 
 The stellar wind incorporates:
 
-- Hydrodynamic base flow matching WR wind characteristics
-- Embedded turbulent eddies and shock structures
+- Hydrodynamic base flow matching WR wind characteristics using spectral methods similar to Andrey Kolmogorov's approach (1941), but with a modified energy cascade.
+- Turbulent eddies and shock structures are artificially seeded in the wind, and the main wind mode is created with a Taylor Frozen model with boundary looping, akin to G. I. Taylor's foundational work (1938), but with a secondary time-evolving mode, which modulates the wind's morphology and allows for realistic interactions. 
 - Three fundamental MHD wave modes (Alfvén, fast, and slow magnetosonic)
 - Observationally constrained WR wind parameters with controlled spatiotemporal variability
 
