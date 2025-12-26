@@ -1,5 +1,5 @@
 # Stability and Control of MagSail-Equipped Spacecraft in Chaotic Wolf–Rayet Stellar Winds
-
+## By Sope Adejumo
 ## Research Question
 
 What distances are relevant for a spacecraft with a MagSail near a Wolf-Rayet star? At what distances can the MagSail spacecraft maintain directional control with confidence?
