@@ -1,4 +1,4 @@
-from config import PhysicsConfig
+from spacecraft.config import PhysicsConfig
 import numpy as np
 from scipy.integrate import solve_ivp
 
@@ -15,6 +15,7 @@ def dynamics(t,state, mass, force, torque, inertia, inv_inertia):
     position = state[0:3]
     velocity = state[3:6]
     orientation = state[6:10]
+    orientation = orientation / np.linalg.norm(orientation)
     angular_velocity = state[10:13]
 
     # Linear physics
@@ -36,22 +37,23 @@ def dynamics(t,state, mass, force, torque, inertia, inv_inertia):
     d_state = np.concatenate([d_pos, d_lin_vel, d_quat, d_ang_vel])
     return d_state
 
-sol = solve_ivp(
-    dynamics,
-    t_span=(0, DURATION),
-    y0=STATE,
-    args=(MASS, FORCE, TORQUE, INERTIA_TENSOR, INV_INERTIA_TENSOR),
-    t_eval=np.linspace(0, DURATION, int(DURATION/DT)+1),
-    method='RK45'
-)
+if __name__ == "__main__":
+    sol = solve_ivp(
+        dynamics,
+        t_span=(0, DURATION),
+        y0=STATE,
+        args=(MASS, FORCE, TORQUE, INERTIA_TENSOR, INV_INERTIA_TENSOR),
+        t_eval=np.linspace(0, DURATION, int(DURATION/DT)+1),
+        method='RK45'
+    )
 
-# Extract the solution
-solution = sol.y
-for i, t in enumerate(sol.t):
-    current_state = solution[:, i]
-    pos = current_state[:3]
-    quat = current_state[6:10]
-    quat = quat / np.linalg.norm(quat)  # Normalize quaternion to ensure it's a valid rotation
+    # Extract the solution
+    solution = sol.y
+    for i, t in enumerate(sol.t):
+        current_state = solution[:, i]
+        pos = current_state[:3]
+        quat = current_state[6:10]
+        quat = quat / np.linalg.norm(quat)  # Normalize quaternion to ensure it's a valid rotation
 
-    print(f"Time: {t}, Position: {pos}, Orientation (Quaternion): {quat}")
+        print(f"Time: {t}, Position: {pos}, Orientation (Quaternion): {quat}")
 

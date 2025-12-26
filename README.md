@@ -87,6 +87,10 @@ By explicitly constraining physical assumptions and modeling regime, this study 
 magsail-wr-stability/
 │
 ├── src/
+|   ├── integrator.py          # Integrator class
+│   │
+│   ├── config.py          # Sail geometries/inertia tensors
+│   │
 │   ├── wind/
 │   │   ├── turbulence.py      # Spectral field generation
 │   │   ├── evolution.py       # Modified Taylor frozen flow
@@ -94,15 +98,13 @@ magsail-wr-stability/
 │   │
 │   ├── spacecraft/
 │   │   ├── dynamics.py        # 6DOF equations of motion
-│   │   ├── magsail.py         # Magnetic sail physics
-│   │   └── config.py          # Sail geometries/inertia tensors
+│   │   └── magsail.py         # Magnetic sail physics
 │   │
 │   ├── coupling/
 │   │   ├── forces.py          # Wind → sail force calculation
 │   │   └── torques.py         # Wind → sail torque calculation
 │   │
 │   ├── simulation/
-│   │   ├── integrator.py      # Time-stepping (RK4, etc.)
 │   │   ├── monte_carlo.py     # MC loop wrapper
 │   │   └── stability.py       # Stability metrics
 │   │
@@ -113,8 +115,7 @@ magsail-wr-stability/
 │
 ├── tests/
 │   ├── test_wind.py           # Unit tests for wind model
-│   ├── test_dynamics.py       # Test rigid body physics
-│   └── test_integration.py    # End-to-end tests
+│   ├── test_dynamics.py      
 │
 ├── notebooks/
 │   ├── wind_validation.ipynb  # Compare to WR observations
@@ -136,4 +137,3 @@ magsail-wr-stability/
 ├── requirements.txt
 └── README.md
 ```
-
