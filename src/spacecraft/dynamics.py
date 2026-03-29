@@ -1,6 +1,7 @@
 from spacecraft.config import PhysicsConfig
 import numpy as np
 from scipy.integrate import solve_ivp
+from src.wind.force import force
 
 DT = PhysicsConfig.DT
 DURATION = PhysicsConfig.DURATION
@@ -8,11 +9,13 @@ MASS = PhysicsConfig.MASS
 INERTIA_TENSOR = PhysicsConfig.INERTIA_TENSOR
 INV_INERTIA_TENSOR = np.linalg.inv(INERTIA_TENSOR)
 STATE = PhysicsConfig.STATE
-FORCE = PhysicsConfig.FORCE
 TORQUE = PhysicsConfig.TORQUE
-def dynamics(t,state, mass, force, torque, inertia, inv_inertia):
+COLLISION_AREA = PhysicsConfig.DIMENSIONS[0] * PhysicsConfig.DIMENSIONS[1]
+
+def dynamics(t,state, mass, torque, inertia, inv_inertia):
     # Unpack the state vector
     position = state[0:3]
+    force_value = force(t, position, COLLISION_AREA)
     velocity = state[3:6]
     orientation = state[6:10]
     orientation = orientation / np.linalg.norm(orientation)
@@ -20,7 +23,7 @@ def dynamics(t,state, mass, force, torque, inertia, inv_inertia):
 
     # Linear physics
     d_pos = velocity
-    d_lin_vel = force / mass
+    d_lin_vel = force_value / mass
 
     # Angular acceleration
     d_ang_vel = inv_inertia @ (torque - np.cross(angular_velocity, inertia @ angular_velocity))
@@ -42,7 +45,7 @@ if __name__ == "__main__":
         dynamics,
         t_span=(0, DURATION),
         y0=STATE,
-        args=(MASS, FORCE, TORQUE, INERTIA_TENSOR, INV_INERTIA_TENSOR),
+        args=(MASS, TORQUE, INERTIA_TENSOR, INV_INERTIA_TENSOR),
         t_eval=np.linspace(0, DURATION, int(DURATION/DT)+1),
         method='RK45'
     )

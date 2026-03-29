@@ -1,20 +1,20 @@
-# Stability and Control of MagSail-Equipped Spacecraft in Chaotic Wolf–Rayet Stellar Winds
+# Stability and Control of MagSail-Equipped Spacecraft in Chaotic Red Dwarf (M-type) Stellar Winds
 ## - By Mosopefoluwa "Sope" Adejumo
 ## Research Question
 
-What distances are relevant for a spacecraft with a MagSail near a Wolf-Rayet star? At what distances can the MagSail spacecraft maintain directional control with confidence?
+What distances are relevant for a spacecraft with a MagSail near a red dwarf star? At what distances can the MagSail spacecraft maintain directional control with confidence?
 
-The Wolf-Rayet star's properties are critical. We need to determine under what conditions the spacecraft can use stellar wind for steering and directional control.
+The red dwarf star's properties are critical. We need to determine under what conditions the spacecraft can use stellar wind for steering and directional control.
 
-This research addresses when a MagSail spacecraft can maintain stable flight and steer effectively using Wolf-Rayet stellar winds.
+This research addresses when a MagSail spacecraft can maintain stable flight and steer effectively using red dwarf stellar winds.
 
 ---
 
 ## Motivation
 
-Magnetic sails (MagSails) enable spacecraft propulsion without propellant by leveraging stellar wind momentum. While previous studies have examined MagSail performance in steady stellar environments, behavior in highly variable winds—such as those from Wolf-Rayet stars with strong, turbulent outflows—remains poorly understood.
+Magnetic sails (MagSails) enable spacecraft propulsion without propellant by leveraging stellar wind momentum. While previous studies have examined MagSail performance in steady stellar environments, behavior in highly variable winds—such as those from red dwarf stars with strong, turbulent outflows—remains poorly understood.
 
-Wolf-Rayet winds present an extreme but valuable test case for MagSail stability and control authority. These winds feature high density, supersonic velocities, embedded magnetic fields, and significant turbulence. Understanding MagSail dynamics in such environments requires simplified yet physically realistic models to avoid prohibitive computational costs.
+red dwarf winds present an extreme but valuable test case for MagSail stability and control authority. These winds feature high density, supersonic velocities, embedded magnetic fields, and significant turbulence. Understanding MagSail dynamics in such environments requires simplified yet physically realistic models to avoid prohibitive computational costs.
 
 ---
 
@@ -24,10 +24,10 @@ Wolf-Rayet winds present an extreme but valuable test case for MagSail stability
 
 The stellar wind incorporates:
 
-- Hydrodynamic base flow matching WR wind characteristics using spectral methods similar to Andrey Kolmogorov's approach (1941), but with a modified energy cascade.
+- Hydrodynamic base flow matching M-Type wind characteristics using spectral methods similar to Andrey Kolmogorov's approach (1941), but with a modified energy cascade.
 - Turbulent eddies and shock structures are artificially seeded in the wind, and the main wind mode is created with a Taylor Frozen model with boundary looping, akin to G. I. Taylor's foundational work (1938), but with a secondary time-evolving mode, which modulates the wind's morphology and allows for realistic interactions. 
 - Three fundamental MHD wave modes (Alfvén, fast, and slow magnetosonic)
-- Observationally constrained WR wind parameters with controlled spatiotemporal variability
+- Observationally constrained M-Type wind parameters with controlled spatiotemporal variability
 
 Wind evolution uses a modified Taylor frozen-flow approximation with temporal modulation functions, allowing turbulent structures to advect while remaining dynamically active.
 
@@ -67,7 +67,7 @@ Stability is quantified through probabilistic analysis across varying wind condi
 
 Primary outputs include:
 
-- Distance-dependent stability regimes for MagSail spacecraft in chaotic WR winds
+- Distance-dependent stability regimes for MagSail spacecraft in chaotic M-Type winds
 - Quantitative confidence thresholds for sustained stabilization
 - Controlled wind-assisted steering regions
 - Clear delineation of failure modes and kinematic approximation limitations
@@ -84,21 +84,25 @@ By explicitly constraining physical assumptions and the modeling regime, this st
 
 ## Project Structure
 ```
-magsail-wr-stability/
+magsail-stability/
 │
 ├── src/
-|   ├── integrator.py          # Integrator and main file
-│   │
-│   ├── config.py          # Sail geometries/inertia tensors
+│   ├── integrator.py          # Integrator and main file
 │   │
 │   ├── wind/
 │   │   ├── turbulence.py      # Spectral field generation
-│   │   ├── evolution.py       # Modified Taylor frozen flow
-│   │   └── wr_params.py       # WR 140 physical parameters
+│   │   ├── ou.py              # Ornstein-Uhlenbeck stochastic modeling
+│   │   ├── poisson.py         # Poisson process for shock distributions
+│   │   ├── density.py         # Wind density calculations
+│   │   ├── velocity.py        # Wind velocity profiles
+│   │   ├── force.py           # Wind force calculations
+│   │   ├── config.py          # Wind model configurations
+│   │   └── wr_params.py       # M-Type physical parameters
 │   │
 │   ├── spacecraft/
 │   │   ├── dynamics.py        # 6DOF equations of motion
-│   │   └── magsail.py         # Magnetic sail physics
+│   │   ├── magsail.py         # Magnetic sail physics
+│   │   └── config.py          # Sail geometries/inertia tensors
 │   │
 │   ├── coupling/
 │   │   ├── forces.py          # Wind → sail force calculation
@@ -115,10 +119,11 @@ magsail-wr-stability/
 │
 ├── tests/
 │   ├── test_wind.py           # Unit tests for wind model
-│   ├── test_dynamics.py      
+│   ├── test_ou_module.py      # Unit tests for OU process
+│   └── test_dynamics.py      
 │
 ├── notebooks/
-│   ├── wind_validation.ipynb  # Compare to WR observations
+│   ├── wind_validation.ipynb  # Compare to M-Type observations
 │   ├── exploration.ipynb      # Quick experiments
 │   └── figures.ipynb          # Generate paper figures
 │

@@ -1,4 +1,5 @@
-from wind import turbulence, evolution, wr_params
+from src.wind import velocity
+from wind import turbulence, wr_params
 from spacecraft.dynamics import dynamics
 from spacecraft import magsail
 from coupling import forces, torques
